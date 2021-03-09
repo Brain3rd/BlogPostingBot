@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
-from config import chrome_path, coffee_site, blog_user, bot_email, bot_password
+from config import chrome_path, coffee_site, blog_user, bot_email, bot_password, api_key
 
 CHROME_DRIVER_PATH = chrome_path
 driver = webdriver.Chrome(CHROME_DRIVER_PATH)
@@ -62,9 +62,16 @@ source_btn.click()
 blog_title.send_keys(random_title)
 blog_url.send_keys(url)
 blog_text = driver.find_element_by_xpath('//*[@id="cke_1_contents"]/textarea')
-blog_text.send_keys(
-    f'Welcome to our coffee shop {random_title}, '
-    f'we are located in <a href="{text}">Chiang Mai, Thailand</a>.')
+blog_text.send_keys(f'Welcome to our coffee shop.<br> We are located in Chiang Mai, Thailand.'
+                    f'<br>'
+                    f'<iframe align="center" '
+                    f'width="280" '
+                    f'height="200" '
+                    f'frameborder="0" style="border:0" '
+                    f'src="https://www.google.com/maps/embed/v1/place?key={api_key}&q={maps},Chiang+Mai" '
+                    f'allowfullscreen>'
+                    f'</iframe>'
+                    )
 submit_btn = driver.find_element_by_xpath('//*[@id="submit"]')
 submit_btn.click()
 
