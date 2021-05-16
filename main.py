@@ -5,9 +5,11 @@ from selenium.webdriver.common.keys import Keys
 from time import sleep
 import random
 from config import chrome_path, coffee_site, blog_user, bot_email, bot_password, api_key
+from webdriver_manager.chrome import ChromeDriverManager
 
 CHROME_DRIVER_PATH = chrome_path
-driver = webdriver.Chrome(CHROME_DRIVER_PATH)
+# driver = webdriver.Chrome(CHROME_DRIVER_PATH)
+driver = webdriver.Chrome(ChromeDriverManager().install())
 
 coffee_blog_site = coffee_site
 
